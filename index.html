@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>GSI Cleaning Services — Home</title>
+<meta name="description" content="GSI Cleaning Services — professional cleaning, fumigation, end-of-tenancy and post-construction cleaning in Kempton Park." />
+<style>
+:root{
+  --navy:#0A2342;    /* deep navy from logo */
+  --sky:#59C8FF;     /* bright sky blue */
+  --lime:#8FD13B;    /* lime green */
+  --muted:#eaf6ff;
+  --white:#ffffff;
+}
+
+/* reset */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter, Arial, Helvetica, sans-serif;
+  color:var(--navy);
+  background:linear-gradient(180deg,var(--muted),#f2fbff);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  min-height:100vh;
+  position:relative;
+}
+
+/* ANIMATED LOGO BACKDROP */
+.logo-backdrop {
+  position:fixed;
+  inset:0;
+  z-index:0;
+  display:block;
+  background-color:#cfeaf0;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+/* Use the uploaded logo as a very large soft background */
+.logo-backdrop::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:140vmin;            /* very large */
+  height:140vmin;
+  transform:translate(-50%,-50%) rotate(0deg) scale(1);
+  background-image:url('logo.png');
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  opacity:0.12;
+  filter:blur(18px) saturate(120%);
+  animation: drift 18s linear infinite;
+  will-change:transform,opacity;
+}
+
+/* extra subtle layer of logo with different hue and movement */
+.logo-backdrop::after{
+  content:"";
+  position:absolute;
+  left:55%;
+  top:48%;
+  width:120vmin;
+  height:120vmin;
+  transform:translate(-50%,-50%) rotate(-6deg) scale(0.98);
+  background-image:url('logo.png');
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  opacity:0.06;
+  filter:blur(28px) hue-rotate(8deg) saturate(110%);
+  animation: driftAlt 26s linear infinite;
+}
+
+/* drifting animations */
+@keyframes drift {
+  0%{ transform:translate(-50%,-50%) rotate(0deg) scale(1); opacity:0.12;}
+  50%{ transform:translate(-51%,-53%) rotate(2deg) scale(1.02); opacity:0.14;}
+  100%{ transform:translate(-50%,-50%) rotate(0deg) scale(1); opacity:0.12;}
+}
+@keyframes driftAlt {
+  0%{ transform:translate(-50%,-50%) rotate(-6deg) scale(.98); opacity:0.06;}
+  50%{ transform:translate(-49%,-47%) rotate(-2deg) scale(1); opacity:0.08;}
+  100%{ transform:translate(-50%,-50%) rotate(-6deg) scale(.98); opacity:0.06;}
+}
+
+/* subtle bubbles & sparkles (pure CSS) */
+.bubble, .spark { position: absolute; pointer-events:none; mix-blend-mode:screen; }
+.bubble{border-radius:50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,255,255,0.4) 35%, rgba(255,255,255,0.06) 60%); opacity:.9; filter:blur(.2px);}
+.spark{width:12px;height:12px;background:linear-gradient(45deg, #fff, var(--sky)); border-radius:2px; box-shadow:0 0 10px rgba(255,255,255,0.9); opacity:.95; transform:rotate(20deg);}
+
+/* bubbles positions */
+.b1{width:18px;height:18px;left:8%;top:70%;animation:rise 10s linear infinite;}
+.b2{width:28px;height:28px;left:22%;top:80%;animation:rise 13s linear -2s infinite;}
+.b3{width:16px;height:16px;left:40%;top:75%;animation:rise 11s linear -1s infinite;}
+.b4{width:24px;height:24px;left:68%;top:82%;animation:rise 12s linear -3s infinite;}
+.b5{width:20px;height:20px;left:86%;top:72%;animation:rise 9s linear -4s infinite;}
+
+@keyframes rise {
+  0%{ transform: translateY(0) scale(.95); opacity:.95; }
+  60%{ transform: translateY(-36vh) scale(1.05); opacity:.9; }
+  100%{ transform: translateY(-70vh) scale(1.12); opacity:0; }
+}
+
+/* sparkles */
+.s1{left:10%;top:18%;animation:twinkle 3.5s infinite;}
+.s2{left:84%;top:12%;animation:twinkle 4.1s 0.5s infinite;}
+.s3{left:50%;top:6%;animation:twinkle 3.9s 1s infinite;}
+@keyframes twinkle{0%{transform:scale(.8);opacity:.6}50%{transform:scale(1.2);opacity:1}100%{transform:scale(.8);opacity:.6}}
+
+/* page layer above background */
+.site {
+  position:relative;
+  z-index:2;
+  max-width:1100px;
+  margin:0 auto;
+  padding:12px;
+}
+
+/* HEADER: compact two-column, fits one line on phones */
+.header-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px 6px;
+}
+.brand {
+  display:flex;
+  gap:10px;
+  align-items:center;
+  white-space:nowrap;
+  min-width:0;
+}
+.brand img{width:56px;height:auto;flex-shrink:0;border-radius:8px}
+.brand .titles{display:flex;flex-direction:column;line-height:1;min-width:0}
+.titles h1{font-size:18px;margin:0;color:var(--navy);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.titles p{margin:0;font-size:12px;color:#0f3b5f}
+.header-actions{display:flex;gap:8px;align-items:center}
+.call{background:linear-gradient(90deg,var(--lime),#78c02f);color:var(--navy);padding:8px 12px;border-radius:10px;font-weight:800;text-decoration:none;font-size:13px}
+.nav-links{display:flex;gap:8px;align-items:center}
+.nav-links a{background:var(--navy);color:var(--white);padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px}
+
+/* HERO */
+.hero{
+  margin-top:10px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(250,255,255,0.8));
+  border-radius:14px;padding:20px;text-align:center;box-shadow:0 10px 30px rgba(10,34,66,0.06)
+}
+.hero h2{font-size:22px;margin:6px 0;color:var(--navy)}
+.hero p{margin:0;color:#164155}
+.hero .actions{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(90deg,var(--lime),#78c02f);padding:12px 18px;border-radius:12px;color:var(--navy);font-weight:900;text-decoration:none;box-shadow:0 8px 20px rgba(137, 216, 69,0.18)}
+.btn-secondary{background:transparent;border:2px solid rgba(10,34,66,0.08);padding:10px 14px;border-radius:10px;color:var(--navy);text-decoration:none;font-weight:700}
+
+/* cards grid */
+.cards{display:grid;gap:12px;margin-top:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.card{background:var(--white);padding:12px;border-radius:12px;box-shadow:0 8px 24px rgba(10,34,66,0.06);text-align:center}
+.card h3{margin:6px 0;color:var(--navy)}
+
+/* footer */
+footer{margin-top:18px;text-align:center;padding:14px;color:#fff;background:linear-gradient(90deg,var(--navy),#07233f);border-radius:10px}
+
+/* whatsapp button */
+.whatsapp{position:fixed;right:14px;bottom:14px;z-index:6;background:var(--lime);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(12,102,34,0.16)}
+.whatsapp img{width:28px;height:28px}
+
+/* responsive: ensure header fits one line */
+@media(max-width:420px){
+  .titles h1{font-size:16px}
+  .brand img{width:48px}
+  .nav-links a{padding:7px 8px;font-size:12px}
+}
+
+/* motion reduction */
+@media (prefers-reduced-motion: reduce){
+  .logo-backdrop::before, .logo-backdrop::after, .bubble, .spark { animation:none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- backdrop -->
+<div class="logo-backdrop" aria-hidden="true">
+  <div class="bubble b1"></div>
+  <div class="bubble b2"></div>
+  <div class="bubble b3"></div>
+  <div class="bubble b4"></div>
+  <div class="bubble b5"></div>
+  <div class="spark s1"></div>
+  <div class="spark s2"></div>
+  <div class="spark s3"></div>
+</div>
+
+<div class="site" role="document">
+  <header class="header-row" role="banner">
+    <div class="brand" title="GSI Cleaning Services">
+      <img src="logo.png" alt="GSI Cleaning logo">
+      <div class="titles">
+        <h1>GSI Cleaning Services</h1>
+        <p>Professional • Reliable • Affordable</p>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <a class="call" href="tel:+27681684241">+27 68 168 4241</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <h2 id="hero-title">Spotless homes & happy customers</h2>
+      <p>Fast quotes • Trusted teams • Professional cleaning, fumigation & post-construction services in Kempton Park.</p>
+      <div class="actions">
+        <a class="btn-primary" href="contact.html">Book Now</a>
+        <a class="btn-secondary" href="services.html">See Services</a>
+      </div>
+    </section>
+
+    <section class="cards" aria-label="Popular services">
+      <div class="card"><h3>Deep Cleaning</h3><p>Kitchen, bathrooms, carpets — full detail.</p></div>
+      <div class="card"><h3>End of Tenancy</h3><p>Move-out cleans inspection-ready.</p></div>
+      <div class="card"><h3>Fumigation</h3><p>Safe pest control and disinfection.</p></div>
+      <div class="card"><h3>Upholstery</h3><p>Couches, mattresses & chairs.</p></div>
+    </section>
+  </main>
+
+  <footer>
+    Call / WhatsApp: <a href="tel:+27681684241" style="color:#dfffb0;text-decoration:none">+27 68 168 4241</a> • <a href="mailto:gsi2025@aol.com" style="color:#fff">gsi2025@aol.com</a>
+  </footer>
+</div>
+
+<a class="whatsapp" href="https://wa.me/27681684241" target="_blank" aria-label="Chat on WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="whatsapp">
+</a>
+
+</body>
+</html>
