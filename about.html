@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>About — GSI Cleaning Services</title>
+<meta name="description" content="Learn more about GSI Cleaning Services — trusted cleaners in Kempton Park." />
+<style>
+:root{--navy:#0A2342;--sky:#59C8FF;--lime:#8FD13B;--muted:#eaf6ff;--white:#fff}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--navy);background:linear-gradient(180deg,var(--muted),#f2fbff);-webkit-font-smoothing:antialiased}
+.logo-backdrop{position:fixed;inset:0;z-index:0;pointer-events:none}
+.logo-backdrop::before{content:"";position:absolute;left:50%;top:50%;width:140vmin;height:140vmin;transform:translate(-50%,-50%);background-image:url('logo.png');background-size:contain;background-repeat:no-repeat;background-position:center;opacity:.12;filter:blur(18px) saturate(110%);animation:drift 20s linear infinite}
+@keyframes drift{0%{transform:translate(-50%,-50%) rotate(0)}50%{transform:translate(-51%,-53%) rotate(2deg)}100%{transform:translate(-50%,-50%) rotate(0)}}
+.bubble,.spark{position:absolute;pointer-events:none}
+.bubble{border-radius:50%;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,.35) 40%, rgba(255,255,255,.06) 60%);opacity:.9;mix-blend-mode:screen;animation:rise 12s linear infinite}
+.s1{left:10%;top:18%;animation:twinkle 3.4s infinite}
+.s2{left:82%;top:12%;animation:twinkle 4.2s .5s infinite}
+.s3{left:50%;top:6%;animation:twinkle 3.9s 1s infinite}
+@keyframes rise{0%{transform:translateY(0)}60%{transform:translateY(-36vh)}100%{transform:translateY(-70vh);opacity:0}}
+@keyframes twinkle{0%{transform:scale(.85);opacity:.6}50%{transform:scale(1.2);opacity:1}100%{transform:scale(.85);opacity:.6}}
+.site{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:12px}
+.header-row{display:flex;align-items:center;justify-content:space-between;padding:10px 6px}
+.brand{display:flex;gap:10px;align-items:center;white-space:nowrap}
+.brand img{width:56px;border-radius:8px}
+.titles h1{margin:0;font-size:18px;color:var(--navy);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.titles p{margin:0;font-size:12px;color:#0f3b5f}
+.nav-links a{background:var(--navy);color:var(--white);padding:8px 10px;border-radius:8px;text-decoration:none;font-weight:700}
+main{position:relative;z-index:2;padding:18px}
+.card{background:var(--white);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(10,34,66,0.06)}
+footer{margin-top:18px;text-align:center;padding:14px;color:#fff;background:linear-gradient(90deg,var(--navy),#07233f);border-radius:8px}
+.whatsapp{position:fixed;right:14px;bottom:14px;background:var(--lime);width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:6}
+@media (prefers-reduced-motion:reduce){.logo-backdrop::before,.bubble,.spark{animation:none}}
+</style>
+</head>
+<body>
+
+<div class="logo-backdrop" aria-hidden="true"><div class="bubble" style="width:20px;height:20px;left:12%;bottom:8%;"></div><div class="bubble" style="width:26px;height:26px;left:30%;bottom:4%;animation-duration:14s"></div><div class="bubble" style="width:16px;height:16px;left:44%;bottom:9%;animation-duration:11s"></div><div class="bubble" style="width:22px;height:22px;left:70%;bottom:6%;animation-duration:12s"></div><div class="bubble" style="width:18px;height:18px;left:86%;bottom:11%;animation-duration:10s"></div><div class="spark s1"></div><div class="spark s2"></div><div class="spark s3"></div></div>
+
+<div class="site">
+  <header class="header-row">
+    <div class="brand">
+      <img src="logo.png" alt="GSI logo">
+      <div class="titles"><h1>GSI Cleaning Services</h1><p>Professional • Reliable</p></div>
+    </div>
+    <div class="header-actions">
+      <a class="nav-links" href="index.html">Home</a>
+      <a class="nav-links" href="services.html">Services</a>
+      <a class="nav-links" href="gallery.html">Gallery</a>
+      <a class="nav-links" href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2 style="color:var(--navy)">About GSI Cleaning Services</h2>
+      <p>GSI Cleaning Services is a Rhodesfield-based cleaning company serving Kempton Park and surrounding areas. We specialise in domestic and commercial cleaning, deep cleans, fumigation, end-of-tenancy, post-construction and upholstery cleaning. Our teams are trained to deliver reliable, safe and professional results every time.</p>
+      <h3 style="color:var(--navy)">Values</h3>
+      <ul>
+        <li>Quality workmanship</li>
+        <li>Safety & eco-friendly options</li>
+        <li>Dependable teams</li>
+      </ul>
+    </div>
+  </main>
+
+  <footer>Call / WhatsApp: <a href="tel:+27681684241" style="color:#dfffb0;text-decoration:none">+27 68 168 4241</a></footer>
+</div>
+
+<a class="whatsapp" href="https://wa.me/27681684241" target="_blank" aria-label="WhatsApp"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="wa" style="width:26px"></a>
+
+</body>
+</html>
