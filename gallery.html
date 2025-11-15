@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Gallery — GSI Cleaning Services</title>
+<meta name="description" content="Before & after cleaning photos — GSI Cleaning Services." />
+<style>
+:root{--navy:#0A2342;--muted:#eaf6ff}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--navy);background:linear-gradient(180deg,var(--muted),#f2fbff)}
+.logo-backdrop{position:fixed;inset:0;z-index:0;pointer-events:none}
+.logo-backdrop::before{content:"";position:absolute;left:50%;top:50%;width:140vmin;height:140vmin;transform:translate(-50%,-50%);background-image:url('logo.png');background-size:contain;background-repeat:no-repeat;background-position:center;opacity:.07;filter:blur(20px) saturate(110%);animation:drift 24s linear infinite}
+@keyframes drift{0%{transform:translate(-50%,-50%) rotate(0)}50%{transform:translate(-51%,-53%) rotate(2deg)}100%{transform:translate(-50%,-50%) rotate(0)}}
+.site{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:12px}
+.header-row{display:flex;align-items:center;justify-content:space-between;padding:10px}
+.brand img{width:56px}
+.nav-links a{background:var(--navy);color:#fff;padding:8px 10px;border-radius:8px;text-decoration:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px}
+.thumb{background:#fff;padding:10px;border-radius:12px;box-shadow:0 10px 30px rgba(10,34,66,0.06)}
+.thumb img{width:100%;display:block;border-radius:8px}
+footer{margin-top:18px;padding:12px;text-align:center;background:linear-gradient(90deg,var(--navy),#07233f);color:#fff;border-radius:8px}
+.whatsapp{position:fixed;right:14px;bottom:14px;background:#8FD13B;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:6}
+</style>
+</head>
+<body>
+
+<div class="logo-backdrop" aria-hidden="true"></div>
+
+<div class="site">
+  <header class="header-row">
+    <div style="display:flex;align-items:center;gap:10px"><img src="logo.png" alt="logo" style="width:56px"><div style="font-weight:800">GSI Cleaning Services</div></div>
+    <div><a class="nav-links" href="index.html">Home</a> <a class="nav-links" href="services.html">Services</a> <a class="nav-links" href="contact.html">Contact</a></div>
+  </header>
+
+  <main>
+    <h1 style="color:var(--navy)">Before & After Gallery</h1>
+    <div class="grid">
+      <div class="thumb"><img src="gallery1.jpg" alt="Gallery image 1"></div>
+      <div class="thumb"><img src="gallery2.jpg" alt="Gallery image 2"></div>
+      <div class="thumb"><img src="gallery3.jpg" alt="Gallery image 3"></div>
+    </div>
+  </main>
+
+  <footer>Call / WhatsApp: <a href="tel:+27681684241" style="color:#dfffb0;text-decoration:none">+27 68 168 4241</a></footer>
+</div>
+
+<a class="whatsapp" href="https://wa.me/27681684241" target="_blank" aria-label="WhatsApp"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="wa" style="width:26px"></a>
+
+</body>
+</html>
