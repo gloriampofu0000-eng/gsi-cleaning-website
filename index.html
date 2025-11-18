@@ -1,0 +1,498 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GSI Cleaning Services — Professional Cleaning With a Fun Touch</title>  <!-- Tailwind CDN -->  <script src="https://cdn.tailwindcss.com"></script>  <style>
+    /* ========== Brand colors ========== */
+    :root{
+      --deep-navy: #0B2A3F;
+      --bright-sky: #43B3F0;
+      --bubble-light: #BEE7FF;
+      --fresh-lime: #8ED130;
+      --dark-lime: #5E9A22;
+      --soft-mint: #DFF8E1;
+      --clean-grey: #E7ECEF;
+      --charcoal: #1A1A1A;
+      --white: #FFFFFF;
+    }
+
+    /* Overall page background using provided bubbly image (replace path) */
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background-image: url('bubbles-bg.png'); /* REPLACE with your provided background image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      color: var(--charcoal);
+    }
+
+    /* Apply subtle overlay so text stays readable */
+    .page-overlay{
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(6px);
+    }
+
+    /* Rounded playful headings */
+    .playful-heading{
+      font-family: 'Poppins', 'Nunito', 'Fredoka', system-ui, -apple-system;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    /* Bubble floating animations */
+    .bubble{
+      position: absolute;
+      border-radius: 999px;
+      opacity: 0.9;
+      filter: drop-shadow(0 6px 18px rgba(11,42,63,0.08));
+      transform-origin: center;
+      animation: floatUp 8s ease-in-out infinite;
+    }
+    @keyframes floatUp{
+      0%{ transform: translateY(0) scale(1); opacity:0.9 }
+      50%{ transform: translateY(-30px) scale(1.05); opacity:0.95 }
+      100%{ transform: translateY(0) scale(1); opacity:0.9 }
+    }
+
+    /* Cartoon mop swipe effect (simple reveal) */
+    .mop-swipe{
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: -20px;
+      bottom: -20px;
+      transform: rotate(-18deg);
+      animation: mopSweep 6s ease-in-out infinite;
+      pointer-events: none;
+      opacity: 0.95;
+    }
+    @keyframes mopSweep{
+      0%{ transform: translateX(0) rotate(-12deg) }
+      50%{ transform: translateX(-18px) rotate(-22deg) }
+      100%{ transform: translateX(0) rotate(-12deg) }
+    }
+
+    /* Service bubble card customizations */
+    .service-bubble{
+      background: linear-gradient(135deg,var(--bubble-light),var(--clean-grey));
+      border-radius: 999px;
+      padding: 1.25rem;
+      min-height: 170px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      transition: transform .28s ease, box-shadow .28s ease;
+    }
+    .service-bubble:hover{ transform: translateY(-8px) scale(1.02); box-shadow: 0 18px 40px rgba(11,42,63,0.12) }
+
+    /* Gallery bubble frame */
+    .gallery-bubble{
+      border-radius: 20px;
+      overflow:hidden;
+      box-shadow: 0 10px 30px rgba(11,42,63,0.08);
+      border: 6px solid rgba(190,231,255,0.45);
+      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.35));
+    }
+
+    /* Sparkle hover pseudo-element */
+    .sparkle-hover{ position: relative }
+    .sparkle-hover::after{
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 15%, rgba(255,255,255,0.9) 0, rgba(255,255,255,0) 18%);
+      opacity: 0;
+      transition: opacity .28s ease, transform .5s ease;
+      transform: scale(.8);
+      pointer-events:none;
+    }
+    .sparkle-hover:hover::after{ opacity: .95; transform: scale(1.1); }
+
+    /* Mobile tweaks */
+    @media (max-width: 640px){
+      .mop-swipe{ width: 110px; height: 110px }
+      .service-bubble{ min-height: 150px }
+    }
+
+    /* Lightbox styles */
+    .lightbox{ position: fixed; inset:0; display:flex; align-items:center; justify-content:center; background: rgba(2,6,23,0.6); z-index:60 }
+
+  </style></head>
+<body class="bg-fixed">
+  <!-- Page container with subtle overlay so background image remains visible but content readable -->
+  <div class="min-h-screen page-overlay">
+    <!-- NAV -->
+    <header class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3">
+        <!-- Replace src with your GSI logo file (SVG or PNG) -->
+        <img src="gsi-logo.png" alt="GSI Cleaning Services" class="w-28 md:w-36 object-contain" />
+      </a>
+      <nav class="hidden md:flex items-center gap-6 text-sm font-semibold">
+        <a href="#home" class="hover:text-[var(--bright-sky)]">Home</a>
+        <a href="#about" class="hover:text-[var(--bright-sky)]">About</a>
+        <a href="#services" class="hover:text-[var(--bright-sky)]">Services</a>
+        <a href="#gallery" class="hover:text-[var(--bright-sky)]">Gallery</a>
+        <a href="#why" class="hover:text-[var(--bright-sky)]">Why Us</a>
+        <a href="#contact" class="hover:text-[var(--bright-sky)]">Contact</a>
+      </nav><div class="flex items-center gap-3">
+    <a href="#contact" class="hidden md:inline-block px-4 py-2 rounded-lg playful-heading text-white text-sm" style="background:linear-gradient(90deg,var(--fresh-lime),var(--dark-lime))">Book a Cleaning</a>
+    <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-white/80">☰</button>
+  </div>
+</header>
+
+<!-- Mobile nav overlay -->
+<div id="mobileNav" class="fixed inset-0 z-50 hidden">
+  <div class="absolute inset-0 bg-black/40" onclick="toggleMobileNav()"></div>
+  <nav class="absolute top-16 right-6 bg-white rounded-2xl p-6 w-64 shadow-2xl">
+    <a href="#home" class="block py-2">Home</a>
+    <a href="#about" class="block py-2">About</a>
+    <a href="#services" class="block py-2">Services</a>
+    <a href="#gallery" class="block py-2">Gallery</a>
+    <a href="#why" class="block py-2">Why Us</a>
+    <a href="#contact" class="block py-2">Contact</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section id="home" class="relative overflow-hidden">
+  <!-- floating bubbles (decorative) -->
+  <div class="absolute -left-8 -top-12 w-40 h-40 bubble bg-[var(--bubble-light)] mix-blend-screen opacity-90"></div>
+  <div class="absolute right-8 top-20 w-28 h-28 bubble bg-[var(--soft-mint)] opacity-90"></div>
+  <div class="absolute left-1/2 top-36 w-20 h-20 bubble bg-[var(--bright-sky)] opacity-80"></div>
+
+  <div class="max-w-6xl mx-auto px-6 py-12 lg:py-24 flex flex-col lg:flex-row items-center gap-10">
+    <div class="w-full lg:w-1/2">
+      <h1 class="playful-heading text-3xl md:text-5xl leading-tight text-[var(--deep-navy)]">Professional Cleaning With a Fun Touch!</h1>
+      <p class="mt-4 text-[var(--charcoal)] text-lg md:text-xl max-w-xl">Reliable, affordable, and spotless cleaning for homes and businesses. We bring sparkle — and personality — to every job.</p>
+
+      <div class="mt-6 flex gap-4 flex-wrap">
+        <a href="#contact" class="px-5 py-3 rounded-full playful-heading text-sm text-white shadow-lg" style="background:linear-gradient(90deg,var(--bright-sky),var(--fresh-lime))">Book a Cleaning</a>
+        <a href="#contact" class="px-5 py-3 rounded-full playful-heading text-sm border-2 border-[var(--bright-sky)]">Get a Free Quote</a>
+      </div>
+
+      <!-- some small features -->
+      <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+        <div class="flex items-center gap-3 bg-white/60 rounded-xl p-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center playful-heading text-[var(--bright-sky)] bg-[var(--bubble-light)]">🏠</div>
+          <div>
+            <div class="text-sm font-bold">Homes & Apartments</div>
+            <div class="text-xs text-gray-600">Flexible scheduling</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 bg-white/60 rounded-xl p-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center playful-heading text-[var(--fresh-lime)] bg-[var(--soft-mint)]">🏢</div>
+          <div>
+            <div class="text-sm font-bold">Commercial</div>
+            <div class="text-xs text-gray-600">Reliable teams</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 bg-white/60 rounded-xl p-3">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center playful-heading text-[var(--dark-lime)] bg-[var(--clean-grey)]">✨</div>
+          <div>
+            <div class="text-sm font-bold">Satisfaction</div>
+            <div class="text-xs text-gray-600">We make it sparkle</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="w-full lg:w-1/2 relative">
+      <!-- hero card/mockup -->
+      <div class="bg-white rounded-3xl p-6 shadow-2xl">
+        <img src="hero-illustration.png" alt="Fun cleaning cartoon" class="w-full h-64 object-contain" />
+        <!-- cartoon mop swipe element (replace with PNG/SVG) -->
+        <img class="mop-swipe" src="mop-swipe.png" alt="mop swipe" />
+      </div>
+
+      <!-- sparkle accent -->
+      <div class="absolute -right-6 -bottom-6 w-28 h-28"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="max-w-6xl mx-auto px-6 py-12">
+  <div class="bg-white rounded-2xl p-6 md:p-12 shadow-inner">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 class="playful-heading text-2xl md:text-3xl">About GSI Cleaning Services</h2>
+        <p class="mt-4 text-gray-700">We combine professional cleaning standards with a playful, friendly approach. Our teams are trained, insured, and use eco-friendly products that are safe for families and pets.</p>
+
+        <div class="mt-6 grid grid-cols-3 gap-4">
+          <div class="text-center">
+            <div class="text-2xl playful-heading text-[var(--bright-sky)]">250+</div>
+            <div class="text-xs text-gray-500">Homes Cleaned</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl playful-heading text-[var(--fresh-lime)]">300+</div>
+            <div class="text-xs text-gray-500">Happy Clients</div>
+          </div>
+          <div class="text-center">
+            <div class="text-2xl playful-heading text-[var(--deep-navy)]">5+</div>
+            <div class="text-xs text-gray-500">Years Experience</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <div class="flex gap-3 items-start bg-[var(--clean-grey)] rounded-xl p-4">
+          <div class="w-14 h-14 rounded-full bg-[var(--bubble-light)] playful-heading flex items-center justify-center">🧽</div>
+          <div>
+            <div class="font-bold">Trained & Friendly Staff</div>
+            <div class="text-sm text-gray-600">Our teams are background-checked and customer-focused.</div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 items-start bg-[var(--soft-mint)] rounded-xl p-4">
+          <div class="w-14 h-14 rounded-full bg-[var(--fresh-lime)] playful-heading flex items-center justify-center">🌱</div>
+          <div>
+            <div class="font-bold">Eco-Friendly Products</div>
+            <div class="text-sm text-gray-600">Safe for homes, offices and the environment.</div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 items-start bg-white rounded-xl p-4">
+          <div class="w-14 h-14 rounded-full bg-[var(--bright-sky)] playful-heading flex items-center justify-center">⏱️</div>
+          <div>
+            <div class="font-bold">Flexible Scheduling</div>
+            <div class="text-sm text-gray-600">Book weekly, bi-weekly, or single cleanings.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="max-w-6xl mx-auto px-6 py-12">
+  <h2 class="playful-heading text-2xl md:text-3xl text-center">Our Services</h2>
+  <p class="text-center text-gray-600 mt-2">Bubble-shaped service cards with friendly icons and a sparkle on hover.</p>
+
+  <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+    <!-- Service Card (repeat as needed) -->
+    <div class="service-bubble sparkle-hover">
+      <div class="w-20 h-20 rounded-full bg-white/80 grid place-items-center text-3xl playful-heading">🏠</div>
+      <div class="mt-4 text-lg font-bold text-[var(--deep-navy)]">Residential Cleaning</div>
+    </div>
+
+    <div class="service-bubble sparkle-hover">
+      <div class="w-20 h-20 rounded-full bg-white/80 grid place-items-center text-3xl playful-heading">🏢</div>
+      <div class="mt-4 text-lg font-bold text-[var(--deep-navy)]">Commercial Cleaning</div>
+    </div>
+
+    <div class="service-bubble sparkle-hover">
+      <div class="w-20 h-20 rounded-full bg-white/80 grid place-items-center text-3xl playful-heading">🧼</div>
+      <div class="mt-4 text-lg font-bold text-[var(--deep-navy)]">Deep Cleaning</div>
+    </div>
+
+    <div class="service-bubble sparkle-hover">
+      <div class="w-20 h-20 rounded-full bg-white/80 grid place-items-center text-3xl playful-heading">🚚</div>
+      <div class="mt-4 text-lg font-bold text-[var(--deep-navy)]">Move-in / Move-out</div>
+    </div>
+
+    <div class="service-bubble sparkle-hover">
+      <div class="w-20 h-20 rounded-full bg-white/80 grid place-items-center text-3xl playful-heading">🧽</div>
+      <div class="mt-4 text-lg font-bold text-[var(--deep-navy)]">Carpet Cleaning</div>
+    </div>
+
+    <div class="service-bubble sparkle-hover">
+      <div class="w-20 h-20 rounded-full bg-white/80 grid place-items-center text-3xl playful-heading">🪟</div>
+      <div class="mt-4 text-lg font-bold text-[var(--deep-navy)]">Window Cleaning</div>
+    </div>
+
+    <div class="service-bubble sparkle-hover">
+      <div class="w-20 h-20 rounded-full bg-white/80 grid place-items-center text-3xl playful-heading">🦠</div>
+      <div class="mt-4 text-lg font-bold text-[var(--deep-navy)]">Fumigation</div>
+    </div>
+
+    <div class="service-bubble sparkle-hover">
+      <div class="w-20 h-20 rounded-full bg-white/80 grid place-items-center text-3xl playful-heading">🎉</div>
+      <div class="mt-4 text-lg font-bold text-[var(--deep-navy)]">After Party Cleaning</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="max-w-6xl mx-auto px-6 py-12">
+  <h2 class="playful-heading text-2xl md:text-3xl text-center">Gallery</h2>
+  <p class="text-center text-gray-600 mt-2">Before & After, Team, Equipment — framed in bubbly shapes.</p>
+
+  <div class="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+    <!-- gallery item (replace src with your photos) -->
+    <div class="gallery-bubble sparkle-hover">
+      <img src="gallery1.jpg" alt="gallery" class="w-full h-40 object-cover" onclick="openLightbox(this)" />
+    </div>
+    <div class="gallery-bubble sparkle-hover">
+      <img src="gallery2.jpg" alt="gallery" class="w-full h-40 object-cover" onclick="openLightbox(this)" />
+    </div>
+    <div class="gallery-bubble sparkle-hover">
+      <img src="gallery3.jpg" alt="gallery" class="w-full h-40 object-cover" onclick="openLightbox(this)" />
+    </div>
+    <div class="gallery-bubble sparkle-hover">
+      <img src="gallery4.jpg" alt="gallery" class="w-full h-40 object-cover" onclick="openLightbox(this)" />
+    </div>
+  </div>
+
+  <div class="mt-6 text-center">
+    <a href="#" class="px-6 py-3 rounded-full playful-heading border-2 border-[var(--bright-sky)]">View Full Gallery</a>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why" class="max-w-6xl mx-auto px-6 py-12">
+  <div class="bg-white rounded-2xl p-6 md:p-12 shadow-md">
+    <h2 class="playful-heading text-2xl md:text-3xl">Why Choose Us</h2>
+    <p class="text-gray-600 mt-2">A friendly cleaning company that values safety, quality and smiles.</p>
+
+    <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="flex items-start gap-4 p-4 rounded-xl bg-[var(--clean-grey)]">
+        <div class="text-3xl playful-heading">✅</div>
+        <div>
+          <div class="font-bold">Trained & Friendly Staff</div>
+          <div class="text-sm text-gray-600">Polite teams trained in best cleaning practices.</div>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 p-4 rounded-xl bg-[var(--soft-mint)]">
+        <div class="text-3xl playful-heading">🌿</div>
+        <div>
+          <div class="font-bold">Eco-Friendly Products</div>
+          <div class="text-sm text-gray-600">Products gentle on people, pets and planet.</div>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 p-4 rounded-xl bg-white">
+        <div class="text-3xl playful-heading">💲</div>
+        <div>
+          <div class="font-bold">Affordable & Reliable</div>
+          <div class="text-sm text-gray-600">Transparent pricing and consistent teams.</div>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 p-4 rounded-xl bg-[var(--bubble-light)]">
+        <div class="text-3xl playful-heading">⚡</div>
+        <div>
+          <div class="font-bold">Fast Response Time</div>
+          <div class="text-sm text-gray-600">Quick quotes and scheduling.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="max-w-6xl mx-auto px-6 py-12">
+  <div class="bg-white rounded-2xl p-6 md:p-12 shadow-lg grid md:grid-cols-2 gap-6">
+    <div>
+      <h2 class="playful-heading text-2xl">Contact Us</h2>
+      <p class="text-gray-600 mt-2">Get a quote, book a cleaning, or ask a question.</p>
+
+      <div class="mt-6 space-y-3 text-sm">
+        <div><strong>Phone:</strong> <a href="tel:+27681684241">+27681684241</a></div>
+        <div><strong>Email:</strong> <a href="mailto:gsi2025@aol.com">gsi2025@aol.com</a></div>
+        <div><strong>Hours:</strong> Mon–Sat 7:00–18:00</div>
+        <div class="mt-4">
+          <a href="https://wa.me/+27681684241" class="inline-block px-4 py-3 rounded-lg playful-heading" style="background:linear-gradient(90deg,var(--fresh-lime),var(--dark-lime)); color:white">WhatsApp Us</a>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <h3 class="font-bold">Location</h3>
+        <div class="mt-2 bg-[var(--clean-grey)] rounded-lg p-2">
+          <!-- replace with your embedded map iframe if available -->
+          <div class="w-full h-48 grid place-items-center text-sm text-gray-500">Map placeholder — replace with Google Maps iframe</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <form id="contactForm" class="space-y-4">
+        <div>
+          <label class="text-sm font-semibold">Your name</label>
+          <input required class="w-full rounded-xl border border-gray-200 p-3 mt-1" placeholder="Jane Doe" />
+        </div>
+        <div>
+          <label class="text-sm font-semibold">Email</label>
+          <input type="email" required class="w-full rounded-xl border border-gray-200 p-3 mt-1" placeholder="gsi2025@aol.com" />
+        </div>
+        <div>
+          <label class="text-sm font-semibold">Phone</label>
+          <input class="w-full rounded-xl border border-gray-200 p-3 mt-1" placeholder="+27 7x xxx xxxx" />
+        </div>
+        <div>
+          <label class="text-sm font-semibold">Message</label>
+          <textarea required class="w-full rounded-xl border border-gray-200 p-3 mt-1 h-28" placeholder="Tell us about your cleaning needs..."></textarea>
+        </div>
+        <div>
+          <button type="submit" class="px-6 py-3 rounded-full playful-heading text-white" style="background:linear-gradient(90deg,var(--bright-sky),var(--fresh-lime))">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-[var(--clean-grey)] mt-8">
+  <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="text-sm">© <strong>GSI Cleaning Services</strong> — Clean with a smile.</div>
+    <div class="text-sm flex items-center gap-4">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+    </div>
+  </div>
+</footer>
+
+  </div>  <!-- Lightbox markup -->  <div id="lightbox" class="hidden lightbox" onclick="closeLightbox(event)">
+    <img id="lightboxImg" src="" alt="full" class="max-w-3xl max-h-[90vh] rounded-xl shadow-2xl" />
+  </div>  <script>
+    // Mobile nav toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    function toggleMobileNav(){ mobileNav.classList.toggle('hidden') }
+    mobileMenuBtn?.addEventListener('click', toggleMobileNav);
+
+    // Lightbox functions
+    function openLightbox(img){
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightboxImg');
+      lbImg.src = img.src;
+      lightbox.classList.remove('hidden');
+    }
+    function closeLightbox(e){
+      if(e.target.id === 'lightbox' || e.target.id === 'lightboxImg'){
+        document.getElementById('lightbox').classList.add('hidden');
+      }
+    }
+
+    // Contact form placeholder behaviour (no backend)
+    document.getElementById('contactForm')?.addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Thanks! Your message was sent (demo). Replace this with your form handler/backend).');
+      e.target.reset();
+    });
+
+    // Simple animation: animate counters on view
+    const counters = document.querySelectorAll('[data-count]');
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const el = entry.target;
+          const target = parseInt(el.dataset.count,10) || 0;
+          let i=0; const step = Math.max(1, Math.floor(target/60));
+          const t = setInterval(()=>{
+            i+=step; el.textContent = i + (i>=target?'+':''); if(i>=target){ clearInterval(t); el.textContent = target + '+' }
+          },16);
+          obs.unobserve(el);
+        }
+      })
+    },{threshold:0.6});
+    document.querySelectorAll('[data-count]').forEach(el=>obs.observe(el));
+
+  </script></body>
+</html>
